@@ -1,0 +1,24 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# tfvars: the tracked environment templates (environments/*/terraform.tfvars)
+# contain PLACEHOLDER values only (no secrets). Any other *.tfvars is ignored
+# to protect local overrides. Real secrets must NEVER be committed - use
+# TF_VAR_* environment variables instead.
+*.tfvars
+!environments/*/terraform.tfvars
+
+# Lambda zip artifact produced by archive_file (modules/lambda).
+build/
+
+# Local plan files
+tfplan
+*.tfplan
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
