@@ -13,6 +13,9 @@
 # Lambda zip artifact produced by archive_file (modules/lambda).
 build/
 
+# Node dependencies (run `npm install --production` in src/ before terraform apply).
+node_modules/
+
 # Local plan files
 tfplan
 *.tfplan

@@ -1,8 +1,10 @@
 ###############################################################################
 # I2 - COMPUTE
-# QR generator Lambda: Python 3.11, arm64, 512MB, 10s timeout (fail-fast),
-# unreserved concurrency (reserved_concurrent_executions intentionally unset),
-# X-Ray active tracing, Powertools Logger/Metrics/Tracer.
+# QR generator Lambda: Node.js 20.x (ESM), arm64, 512MB, 10s timeout
+# (fail-fast), unreserved concurrency (reserved_concurrent_executions
+# intentionally unset), X-Ray active tracing, Powertools Logger/Metrics/Tracer
+# (TypeScript). Handler source lives at src/index.mjs; packaging is
+# `npm install --production` + Terraform archive_file (no bundler).
 #
 # IAM policies are inline (aws_iam_role_policy) on purpose: the policy is bound
 # 1:1 to the role and cannot be reused/over-granted. The DynamoDB and S3 policy
@@ -79,8 +81,8 @@ resource "aws_lambda_function" "qr_generator" {
   source_code_hash = data.archive_file.qr_generator.output_base64sha256
 
   role    = aws_iam_role.lambda.arn
-  handler = "qr_generator.handler"
-  runtime = "python3.11"
+  handler = "index.handler"
+  runtime = "nodejs20.x"
 
   # Architecture + sizing per architecture spec.
   architectures = ["arm64"]
