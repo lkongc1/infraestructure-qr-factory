@@ -37,7 +37,7 @@ module "frontend" {
   extra_tags = local.extra_tags
 }
 
-# I2 - Compute: QR generator Lambda (Python 3.11, arm64, Powertools).
+# I2 - Compute: QR generator Lambda (Node.js 20.x ESM, arm64, Powertools TS).
 # Consumes data module outputs (bucket + table ids/arns/names).
 module "lambda" {
   source = "../../modules/lambda"
